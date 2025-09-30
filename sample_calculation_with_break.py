@@ -1,36 +1,50 @@
-def calculator (): 
-    print ("welcome to te sample calculator")
+def calculator():
+    print("Welcome to the sample calculator!")
+
     numbers = []
+
+    # Step 1: Collect numbers
     while True:
-        user_input = input("Enter your numbers one by one, type 'done' when finished: ").strip()
-        if user_input == "done" :
-            print("goodbye!!")
+        user_input = input("Enter a number (or type 'done' to finish): ").strip().lower()
+        if user_input == "done":
+            print ("you finished entering your numbers!!")
             break
         try:
             number = float(user_input)
             numbers.append(number)
         except ValueError:
-            print("invalid input please enter a number or 'done' ")
-        if len(numbers) < 2:
-            print ("need atleast two numbers ")
-           
-        sign = input("enter a calculation sign among = + - / * ").strip()
-        if sign not in ['=', '+', '-', '/', '*']:
-            print("invalid operation sign")
-            continue
-        result = numbers[0]
-        for num in numbers[1:]:
-            if sign == '+':
-                result += num
-            elif sign == '-':
-                result -= num
-            elif sign == '*':
-                result *= num
-            elif sign == '/':
-                if num == 0:
-                    print ("cannot be divided by zero ")
-                    return
-                result /= num
-                print (f"the result of thecalculation is :" ,{result})
+            print("Invalid input. Please enter a number or 'done'.")
+
+    # Step 2: Ensure at least two numbers
+    if len(numbers) < 2:
+        print("You need at least two numbers to perform calculations.")
+        return
+
+    # Step 3: Ask for operation
+    sign = input("Enter a calculation sign (+, -, *, /): ").strip()
+    if sign not in ['+', '-', '*', '/']:
+        print("Invalid operation sign.")
+        return
+
+    # Step 4: Perform calculation
+    result = numbers[0]
+    for num in numbers[1:]:
+        if sign == '+':
+            result += num
+        elif sign == '-':
+            result -= num
+        elif sign == '*':
+            result *= num
+        elif sign == '/':
+            if num == 0:
+                print("Error: Cannot divide by zero.")
+                return
+            result /= num
+
+    # Step 5: Show result
+    print(f"The result of the calculation is: {result}")
+
+
+# Run calculator
 calculator()
-              
+      
